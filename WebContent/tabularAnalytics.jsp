@@ -14,45 +14,41 @@
 		<title>Criminal Prediction System</title>
 	</head>
 	<body>
-		<% HashMap<String, CallDetailsBean> probableNumbersList = (HashMap<String, CallDetailsBean>)session.getAttribute("ProbableNumbers"); %>
+		<span class="label label-primary">Subscriber Number:: <%=session.getAttribute("subscriberNumber") %></span><br/>
+		<% List<CallDetailsBean> numbersList = (List<CallDetailsBean>)session.getAttribute("callList"); %>
 		<table class="table">
 		    <thead>
 		        <tr>
 		            <th>Record</th>
-		            <th>Subscriber Number</th>
+		            <th>Number Connected</th>
+		            <th>Start Date Time</th>
 		            <th>Related IMEI</th>
 		            <th>Related IMSI</th>
 		            <th>Subscriber Operator</th>
-		            <th>Tabular Analytics</th>
-		            <th>Location Analytics</th>
-		            <th>Graphical Analytics</th>
+		            <th>Call Type</th>
+		            <th>Call Direction</th>
+		            <th>Call Location</th>
+		            <th>Call Duration</th>
+		            <th>Circle</th>
 		        </tr>
 		    </thead>
 		    <tbody>
 		    	<% int i=0;
-		    	for(String keys: probableNumbersList.keySet()){
-		    		List callList=((List<CallDetailsBean>)probableNumbersList.get(keys));
-		    		int count=callList.size();
-		    		CallDetailsBean bean=(CallDetailsBean)callList.get(0);
+		    	for(CallDetailsBean bean: numbersList){
 		    	%>
-		    	<%if(count>20){ %>
-		    	 	<tr class="danger">
-		    	 	
-		    	 <%}else if (count>10){ %>
-		    	 	<tr class="warning">
-			    	 	
-		    	 <%}else { %>
+		    	
 		    	 	<tr class="success">
-			    	 	
-		    	 <%} %>
 		    	 		<td><%=i=i+1 %></td>
-		            	<td><%=keys%></td>
+		    	 		<td><%=bean.getOtherNumber() %>
+		            	<td><%=bean.getStartDateTime()%></td>
 			            <td><%=bean.getImei() %></td>
 			            <td><%=bean.getImsi() %></td>
 			            <td><%=bean.getSubscriberOperator() %></td>
-			            <td><a href="/DataMining/TabularAnalytics?param1=<%=keys%>"><img src='images/table.png'></a></td>
-			            <td><a href="/DataMining/LocationAnalysis?param1=<%=keys%>"><img src='images/location.png'></a></td>
-			            <td><a href="/DataMining/GraphAnalysis?param1=<%=keys%>"><img src='images/chart.png'></a></td>
+			            <td><%=bean.getCallType() %></td>
+			            <td><%=bean.getCallDirection() %></td>
+			            <td><%=bean.getCellLocation() %></td>
+			            <td><%=bean.getDuration() %></td>
+			            <td><%=bean.getCircle() %></td>
 			        </tr>
 		        <%} %>
 		       

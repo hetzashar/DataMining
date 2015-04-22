@@ -9,6 +9,30 @@
     <servlet-name>SilentAnalysis</servlet-name>
     <url-pattern>/SilentAnalysis</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>LocationAnalysis</servlet-name>
+    <servlet-class>com.datamining.servlets.LocationAnalysis</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LocationAnalysis</servlet-name>
+    <url-pattern>/LocationAnalysis</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>GraphAnalysis</servlet-name>
+    <servlet-class>com.datamining.servlets.GraphAnalysis</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GraphAnalysis</servlet-name>
+    <url-pattern>/GraphAnalysis</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>TabularAnalytics</servlet-name>
+    <servlet-class>com.datamining.servlets.TabularAnalytics</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TabularAnalytics</servlet-name>
+    <url-pattern>/TabularAnalytics</url-pattern>
+  </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>

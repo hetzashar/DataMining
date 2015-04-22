@@ -47,6 +47,7 @@ public class SilentAnalysis extends HttpServlet {
 		System.out.println("Post of Silent Number Analysis Servlet");
 		response.setContentType("text/html");  
 		PrintWriter out = response.getWriter();
+		HttpSession session = request.getSession();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
 		
 		String startTime=request.getParameter("doblocalStart");
@@ -77,13 +78,12 @@ public class SilentAnalysis extends HttpServlet {
 		
 		Date endDateTime=null;
 		endDateTime=calEnd.getTime();
-		
+		session.setAttribute("crimeStartTime",startDateTime);
 		HashMap<String, List<CallDetailsBean>> map = SilentNumberAnalysis.getSilentNumberAnalytics(startDateTime, endDateTime, location);
 		System.out.println(map.size());
 		if(map.size()==0){
 			out.write("No probable records found");
 		}else{
-			HttpSession session = request.getSession();
 			session.setAttribute("ProbableNumbers", map);
 			RequestDispatcher rd=request.getRequestDispatcher("probablenosTable.jsp");
 			rd.forward(request,response); 
