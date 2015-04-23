@@ -13,7 +13,10 @@ import java.util.List;
 
 import com.datamining.beans.CallDetailsBean;
 import com.datamining.beans.CallSummaryBean;
+import com.datamining.beans.LocationBean;
 import com.datamining.beans.OtherNumberBean;
+import com.datamining.beans.SubscriberDetailsBean;
+import com.datamining.servlets.LocationAnalysis;
 
 public class SilentNumberAnalysis {
 
@@ -312,5 +315,128 @@ public class SilentNumberAnalysis {
 			}
 		}
 		return beanList;
+	}
+
+	public static List<LocationBean> getLocationAnalysis(String parameter, Date startDateTime, int noOfDays) {
+
+		ResultSet rs=null;
+		Connection con=null;
+		PreparedStatement ps=null;
+		List<LocationBean> beanList=new ArrayList<LocationBean>();
+		Date endDateTime = new Date(startDateTime.getTime());
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(startDateTime);
+		cal.add(Calendar.DATE, -noOfDays);
+		startDateTime.setTime(cal.getTime().getTime());
+		try{
+			String sql="select DISTINCT LATTITUDE, LONGITUDE, CELLLOCATION from test.circuitswitched_cdr "+
+					"where SUBSCRIBERNUMBER =? AND STARTTIME BETWEEN ? AND ? ";
+			con=ConnectionPool.getConnectionFromPool();
+			ps=con.prepareStatement(sql);
+			ps.setString(1, parameter);
+			ps.setTimestamp(2, new Timestamp(startDateTime.getTime()));
+			ps.setTimestamp(3, new Timestamp(endDateTime.getTime()));
+			System.out.println("Query formed:: "+ps.toString());
+			rs=ps.executeQuery();
+			while(rs.next())
+			{
+				LocationBean bean = new LocationBean();
+				bean.setSubscriberNumber(parameter);
+				bean.setLatitude(rs.getFloat("LATTITUDE"));
+				bean.setLongtitude(rs.getFloat("LONGITUDE"));
+				bean.setAddress(rs.getString("CELLLOCATION"));
+				beanList.add(bean);
+			}
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally{
+			if(rs!=null)
+			{
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+	 			}
+			}
+			if(ps!=null)
+			{
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con!=null)
+			{
+				try {
+					ConnectionPool.addConnectionBackToPool(con);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return beanList;
+	
+	}
+	
+	public static SubscriberDetailsBean getSubscriberDetails(String parameter) {
+
+		ResultSet rs=null;
+		Connection con=null;
+		PreparedStatement ps=null;
+		SubscriberDetailsBean bean=new SubscriberDetailsBean();
+		try{
+			String sql="select SUBSCRIBER_NUMBER, IMSI, AGENT_NAME, AGENT_CODE, ADDRESS, CIRCLE from test.circuitswitched_sdr "+
+					"where SUBSCRIBER_NUMBER =? ";
+			con=ConnectionPool.getConnectionFromPool();
+			ps=con.prepareStatement(sql);
+			ps.setString(1, parameter);
+			System.out.println("Query formed:: "+ps.toString());
+			rs=ps.executeQuery();
+			while(rs.next())
+			{
+				bean.setSubscriberNumber(rs.getString("SUBSCRIBER_NUMBER"));
+				bean.setIMSI(rs.getString("IMSI"));
+				bean.setAgentName(rs.getString("AGENT_NAME"));
+				bean.setAgentCode(rs.getString("AGENT_CODE"));
+				bean.setAddress(rs.getString("ADDRESS"));
+				bean.setCircle(rs.getString("CIRCLE"));
+			}
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally{
+			if(rs!=null)
+			{
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+	 			}
+			}
+			if(ps!=null)
+			{
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con!=null)
+			{
+				try {
+					ConnectionPool.addConnectionBackToPool(con);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return bean;
+	
 	}
 }

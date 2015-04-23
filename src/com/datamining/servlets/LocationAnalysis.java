@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.datamining.beans.CallDetailsBean;
+import com.datamining.beans.LocationBean;
+import com.datamining.beans.SubscriberDetailsBean;
 import com.datamining.datacollection.SilentNumberAnalysis;
 
 /**
@@ -33,19 +35,25 @@ public class LocationAnalysis extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Inside doGet");
+		System.out.println("Get of Tabular Analysis Servlet");
 		response.setContentType("text/html");  
 		PrintWriter out = response.getWriter();
-		System.out.println("Param1:: "+request.getParameter("param1"));
+		String subscriberNumber = request.getParameter("param1");
 		HttpSession session= request.getSession();
+		session.setAttribute("subscriberNumber", subscriberNumber);
 		Date startDateTime=(Date)session.getAttribute("crimeStartTime");
-		int noOfDays=7;
-		List<CallDetailsBean> beanList = SilentNumberAnalysis.getTabularAnalysis(request.getParameter("param1"), startDateTime, noOfDays);
-		session.setAttribute("callList", beanList);
+		int noOfDays=120;
+		List<LocationBean> beanList = SilentNumberAnalysis.getLocationAnalysis(subscriberNumber, startDateTime, noOfDays);
+		session.setAttribute("locationBean", beanList);
 		
 		if(beanList.size()==0){
 			out.write("No probable records found");
 		}else{
+			LocationBean bean=beanList.get(0);
+			SubscriberDetailsBean subscriberBean = SilentNumberAnalysis.getSubscriberDetails(subscriberNumber);
+			bean.setSubscriber(subscriberBean);
+			beanList.set(0, bean);
+			session.setAttribute("locationBean", beanList);
 			RequestDispatcher rd=request.getRequestDispatcher("locationAnalytics.jsp");
 			rd.forward(request,response); 
 		}
