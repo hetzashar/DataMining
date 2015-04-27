@@ -7,7 +7,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>SilentAnalysis</servlet-name>
-    <url-pattern>/SilentAnalysis</url-pattern>
+    <url-pattern>/SilentAnalysis/*</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>LocationAnalysis</servlet-name>
@@ -15,7 +15,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>LocationAnalysis</servlet-name>
-    <url-pattern>/LocationAnalysis</url-pattern>
+    <url-pattern>/LocationAnalysis/*</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>GraphAnalysis</servlet-name>
@@ -23,7 +23,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>GraphAnalysis</servlet-name>
-    <url-pattern>/GraphAnalysis</url-pattern>
+    <url-pattern>/GraphAnalysis/*</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>TabularAnalytics</servlet-name>
@@ -31,7 +31,15 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>TabularAnalytics</servlet-name>
-    <url-pattern>/TabularAnalytics</url-pattern>
+    <url-pattern>/TabularAnalytics/*</url-pattern>
+  </servlet-mapping>
+   <servlet>
+    <servlet-name>RegisterServlet</servlet-name>
+    <servlet-class>com.datamining.servlets.RegisterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegisterServlet</servlet-name>
+    <url-pattern>/RegisterServlet/*</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>

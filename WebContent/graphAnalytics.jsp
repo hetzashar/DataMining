@@ -8,6 +8,16 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
+		media="screen">
+		<link href="bootstrap/css/bootstrap-switch.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/stylee.css">
+      <link rel="stylesheet" type="text/css" href="css/other.css">
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Criminal Prediction System</title>
 
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
@@ -168,18 +178,30 @@
 		</script>
 	</head>
 	<body>
+	<div id='cssmenu'>
+<ul>
+   <li class='active'><a href='home.jsp'><span>Home</span></a></li>
+   <li><a href='login.jsp'><span>Login</span></a></li>
+   <li><a href='identify.jsp'><span>Sign Up</span></a></li>
+   <li class='last'><a href='#'><span>Contact</span></a></li>
+</ul>
+</div>
 		<script src="js/highcharts.js"></script>
 		<script src="js/highcharts-3d.js"></script>
 		<script src="js/modules/exporting.js"></script>
+		
 	
 		<div id="container"></div>
+		<br>
 		<div id="sliders">
 			<table>
 				<tr><td>Alpha Angle</td><td><input id="R0" type="range" min="0" max="45" value="15"/> <span id="R0-value" class="value"></span></td></tr>
 			    <tr><td>Beta Angle</td><td><input id="R1" type="range" min="0" max="45" value="15"/> <span id="R1-value" class="value"></span></td></tr>
 			</table>
 		</div>
+		
 		<div id="otherNumberContainer"></div>
+		<br>
 		<div id="slidersOtherNumber">
 			<table>
 				<tr><td>Alpha Angle</td><td><input id="ROth0" type="range" min="0" max="45" value="15"/> <span id="ROth0-value" class="value"></span></td></tr>

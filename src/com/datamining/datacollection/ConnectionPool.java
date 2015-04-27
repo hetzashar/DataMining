@@ -16,13 +16,13 @@ import java.util.Vector;
     private static Vector<Connection> usedConnections = new Vector<Connection>();   
       
     // The URL string used to connect to the database   
-    private static String urlString = "jdbc:mysql://localhost:3306/test";   
+    private static String urlString = "jdbc:mysql://localhost:3306/DATAMIN";   
       
     // The username used to connect to the database   
     private static String userName = "root";       
       
     // The password used to connect to the database   
-    private static String password = "tiger";       
+    private static String password = "root";       
       
     // The cleanup thread   
     private Thread cleanupThread = null;   

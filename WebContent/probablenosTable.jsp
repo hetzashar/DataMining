@@ -9,15 +9,30 @@
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
 		media="screen">
 		<link href="bootstrap/css/bootstrap-switch.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/stylee.css">
+      <link rel="stylesheet" type="text/css" href="css/other.css">
+       <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Criminal Prediction System</title>
 	</head>
 	<body>
+	
+	<div id='cssmenu'>
+<ul>
+   <li class='active'><a href='home.jsp'><span>Home</span></a></li>
+   <li><a href='login.jsp'><span>Login</span></a></li>
+   <li><a href='identify.jsp'><span>Sign Up</span></a></li>
+   <li class='last'><a href='#'><span>Contact</span></a></li>
+</ul>
+</div>
+	<div class="container">
 		<% HashMap<String, CallDetailsBean> probableNumbersList = (HashMap<String, CallDetailsBean>)session.getAttribute("ProbableNumbers"); %>
-		<table class="table">
+		<table class="table table-striped table-bordered table-condensed">
 		    <thead>
-		        <tr>
+		        <tr class="info">
 		            <th>Record</th>
 		            <th>Subscriber Number</th>
 		            <th>Related IMEI</th>
@@ -58,6 +73,8 @@
 		       
 		    </tbody>
 		</table>
+		</div>
+	
 	</body>
 	<script src="http://code.jquery.com/jquery.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
