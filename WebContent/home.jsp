@@ -14,7 +14,30 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>	
 	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<style>
+	.demo select {
+		border: 0 !important;  /*Removes border*/
+		-webkit-appearance: none;  /*Removes default chrome and safari style*/
+		-moz-appearance: none; /* Removes Default Firefox style*/
+		background: #0088cc url(img/select-arrow.png) no-repeat 90% center;
+		width: 100px; /*Width of select dropdown to give space for arrow image*/
+		text-indent: 0.01px; /* Removes default arrow from firefox*/
+		text-overflow: "";  /*Removes default arrow from firefox*/ /*My custom style for fonts*/
+		color: #FFF;
+		border-radius: 15px;
+		padding: 5px;
+		box-shadow: inset 0 0 5px rgba(000,000,000, 0.5);
+	}
+	.demo select.balck {
+		background-color: #000;
+	}
+	.demo select.option3 {
+		border-radius: 10px 0;
+	}
+</style>
 <title>CRIMINAL PREDICTION</title>
 </head>
 <body>
@@ -59,7 +82,7 @@
 <div class="containerr">
 <section id="content">
  <form  role="form"  action="SilentAnalysis" method="POST" id="silentAnalysis">
-           <h2>Crime Period</h2>
+           <h2>Silent Number Analysis</h2>
 	<div class="one">
         <div class="register">
            <div>
@@ -97,35 +120,33 @@
     });
   });
 </script>
-         <div> 
-       <label >Circle </label> 
-       <div style="float: right; width: 380px">
-				<div class="input-group-btn select" id="select">
-					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-					<span class="selected">Mumbai</span> 
+<br>
+<br>
+<form class="demo">
+<label >Circle </label> 
+ 
+	<select>
+	 <span class="selected">Mumbai</span> 
 					<span class="caret"></span></button>
-				
-				 <ul class="dropdown-menu option" role="menu">
-				    <li id="1"><a href="">Mumbai</a></li>
-				    <li id="2"><a href="#">Banglore</a></li>
-				    <li id="3"><a href="#">Hyderabad</a></li>
-				    <li id="4"><a href="#">Chennai</a></li>
-				    <li id="5"><a href="#">Gujarat</a></li>
-				    <li id="6"><a href="#">Delhi</a></li>
-				    <li id="7"><a href="#">Kolkata</a></li>
-				    <li id="8"><a href="#">Rajasthan</a></li>
-				    <li id="9"><a href="#">Goa</a></li>
-				    <li id="10"><a href="#">Trivandrum</a></li>
-				    <li id="11"><a href="#">Chandigarh</a></li>
-				    <li id="12"><a href="#">Srinagar</a></li>
-				    <li id="13"><a href="#">Lucknow</a></li>
-				    <li id="14"><a href="#">Patna</a></li>
-				    <li id="15"><a href="#">Jaipur</a></li>
-				    <li id="16"><a href="#">Gurgaon</a></li>
-				  </ul>
-				  </div>
-  	 			</div>
-  	 			</div>
+		<option>Mumbai</option>
+		<option>bangalore </option>
+		<option>Hyderabad</option>
+		<option>Chennai</option>
+		<option>Gujarat</option>
+		<option>Delhi</option>
+		<option>Kolkata</option>
+		<option>Rajasthan</option>
+		<option>Goa</option>
+		<option>Trivandrum</option>
+		<option>Chandigarh</option>
+		<option>Srinagar</option>
+		<option>Lucknow</option>
+		<option>Patna</option>
+		<option>Jaipur</option>
+		<option>Gurgaon</option>
+	</select>
+	
+</form>
   	 			<br>
   	 			<br>
   	 			<div>  	  	   
