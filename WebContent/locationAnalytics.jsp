@@ -53,20 +53,28 @@
 									+ '</div>' ]
 			// Info Window Content
 			<%}else{%>	
-				
-			infoWindowContent = [ '<div class="info_content">'
-							+ '<h3><%=subscriber.getSubscriberNumber()%> Subscriber Details</h3>'
-							+ '<p><b>Name: </b><%=subscriber.getSubscriberName()%></p><br/>'
-							+ '<p><b>Address: </b><%=subscriber.getAddress()%></p><br/>'
-							+ '<p><b>Circle: </b><%=subscriber.getCircle()%></p><br/>'
-							+ '<p><b>Related IMSI: </b><%=subscriber.getIMSI()%></p><br/>'
-							+ '<p><b>Agent Name: </b><%=subscriber.getAgentName()%></p><br/>'
-							+ '<p><b>Agent Code: </b><%=subscriber.getAgentCode()%></p><br/>'
-							+ '</div>' ];
+			var name='<%=subscriber.getSubscriberName()%>';
+			var number='<%=subscriber.getSubscriberNumber()%>';
+			var circle='<%=subscriber.getCircle()%>';
+			var imsi='<%=subscriber.getIMSI()%>';
+			var address='<%=subscriber.getAddress()%>';
+			var agentName='<%=subscriber.getAgentName()%>';
+			var agentCode='<%=subscriber.getAgentCode()%>';
+			
+			var contentString = '<div class="info_content">'
+				+ '<h3>Subscriber Details: '+number +'</h3>'
+				+ '<p><b>Name: </b>'+name+'</p>'
+				+ '<p><b>Circle: </b>'+circle+'</p>'
+				+ '<p><b>Address: </b>'+address+'</p>'
+				+ '<p><b>Related IMSI: </b>'+imsi+'</p>'
+				+ '<p><b>Agent Name: </b>'+agentName+'</p>'
+				+ '<p><b>Agent Code: </b>'+agentCode+'</p><br/>'	
+				+ '</div>';	
+			
 
 				<%}%>
 				// Display multiple markers on a map
-				var infoWindow = new google.maps.InfoWindow(), marker, i;
+				var infoWindow = new google.maps.InfoWindow({content:contentString}), marker, i;
 
 				// Loop through our array of markers & place each one on the map  
 				for (i = 0; i < markers.length; i++) {
@@ -83,7 +91,6 @@
 					google.maps.event.addListener(marker, 'click', (function(
 							marker, i) {
 						return function() {
-							infoWindow.setContent(infoWindowContent[0][0]);
 							infoWindow.open(map, marker);
 						}
 					})(marker, i));

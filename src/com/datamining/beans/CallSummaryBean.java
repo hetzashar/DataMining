@@ -1,5 +1,6 @@
 package com.datamining.beans;
 
+
 public class CallSummaryBean {
 
 	String subscriberNumber;
@@ -9,6 +10,19 @@ public class CallSummaryBean {
 	int vcOutTotal;
 	int smsInTotal;
 	int smsOutTotal;
+	
+	public CallSummaryBean(){
+	}
+	
+	public CallSummaryBean(String number,int dur,int a,int b,int c,int d){
+		subscriberNumber=number;
+		totalDuration=dur;
+		vcInTotal=a;
+		vcOutTotal=b;
+		smsInTotal=c;
+		smsOutTotal=d;
+	}
+	
 	public String getSubscriberNumber() {
 		return subscriberNumber;
 	}
@@ -54,3 +68,5 @@ public class CallSummaryBean {
 	
 	
 }
+
+ 

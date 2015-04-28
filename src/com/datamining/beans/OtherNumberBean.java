@@ -8,6 +8,16 @@ public class OtherNumberBean implements Serializable{
 	int noOfCalls;
 	String subscriberNumber;
 	
+	public OtherNumberBean(){
+		
+	}
+	
+	public OtherNumberBean(String num,String calls,String number){
+		otherNumber=num;
+		noOfCalls=Integer.parseInt(calls);
+		subscriberNumber=number;
+	}
+	
 	public String getOtherNumber() {
 		return otherNumber;
 	}

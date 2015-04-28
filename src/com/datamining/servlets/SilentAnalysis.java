@@ -78,7 +78,7 @@ public class SilentAnalysis extends HttpServlet {
 		
 		Date endDateTime=null;
 		endDateTime=calEnd.getTime();
-		session.setAttribute("crimeStartTime",startDateTime);
+		session.setAttribute("crimeStartTime",new Date(startDateTime.getTime()));
 		HashMap<String, List<CallDetailsBean>> map = SilentNumberAnalysis.getSilentNumberAnalytics(startDateTime, endDateTime, location);
 		System.out.println(map.size());
 		if(map.size()==0){

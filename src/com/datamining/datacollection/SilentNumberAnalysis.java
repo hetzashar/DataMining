@@ -1,13 +1,13 @@
 package com.datamining.datacollection;
 
 import java.sql.Connection;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -16,6 +16,7 @@ import com.datamining.beans.CallSummaryBean;
 import com.datamining.beans.LocationBean;
 import com.datamining.beans.OtherNumberBean;
 import com.datamining.beans.SubscriberDetailsBean;
+import com.datamining.servlets.LocationAnalysis;
 
 public class SilentNumberAnalysis {
 
@@ -109,18 +110,21 @@ public class SilentNumberAnalysis {
 		Connection con=null;
 		PreparedStatement ps=null;
 		List<CallDetailsBean> list=new ArrayList<CallDetailsBean>();
-		Date endDateTime = new Date(startDateTime.getTime());
+		
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(startDateTime);
 		cal.add(Calendar.DATE, -time);
-		startDateTime.setTime(cal.getTime().getTime());
+		Date startDate=new Date(cal.getTime().getTime());
+		cal.setTime(startDateTime);
+		cal.add(Calendar.DATE, time);
+		Date endDateTime = new Date(cal.getTime().getTime());
 		try{
 			String sql="select * from test.circuitswitched_cdr "+
 						"where SUBSCRIBERNUMBER =? AND STARTTIME BETWEEN ? AND ? ";
 			con=ConnectionPool.getConnectionFromPool();
 			ps=con.prepareStatement(sql);
 			ps.setString(1, number);
-			ps.setTimestamp(2, new Timestamp(startDateTime.getTime()));
+			ps.setTimestamp(2, new Timestamp(startDate.getTime()));
 			ps.setTimestamp(3, new Timestamp(endDateTime.getTime()));
 			System.out.println("Query formed:: "+ps.toString());
 			rs=ps.executeQuery();
@@ -187,11 +191,14 @@ public class SilentNumberAnalysis {
 		Connection con=null;
 		PreparedStatement ps=null;
 		CallSummaryBean bean=new CallSummaryBean();
-		Date endDateTime = new Date(startDateTime.getTime());
+//		Date endDateTime = new Date(startDateTime.getTime());
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(startDateTime);
 		cal.add(Calendar.DATE, -time);
-		startDateTime.setTime(cal.getTime().getTime());
+		Date startDate=new Date(cal.getTime().getTime());
+		cal.setTime(startDateTime);
+		cal.add(Calendar.DATE, time);
+		Date endDateTime = new Date(cal.getTime().getTime());
 		try{
 			String sql="SELECT COUNT(*) COUNT, CALLTYPE, DIRECTION "+
 						"FROM test.circuitswitched_cdr " +
@@ -200,7 +207,7 @@ public class SilentNumberAnalysis {
 			con=ConnectionPool.getConnectionFromPool();
 			ps=con.prepareStatement(sql);
 			ps.setString(1, number);
-			ps.setTimestamp(2, new Timestamp(startDateTime.getTime()));
+			ps.setTimestamp(2, new Timestamp(startDate.getTime()));
 			ps.setTimestamp(3, new Timestamp(endDateTime.getTime()));
 			System.out.println("Query formed:: "+ps.toString());
 			rs=ps.executeQuery();
@@ -257,11 +264,14 @@ public class SilentNumberAnalysis {
 		Connection con=null;
 		PreparedStatement ps=null;
 		List<OtherNumberBean> beanList=new ArrayList<OtherNumberBean>();
-		Date endDateTime = new Date(startDateTime.getTime());
+//		Date endDateTime = new Date(startDateTime.getTime());
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(startDateTime);
 		cal.add(Calendar.DATE, -time);
-		startDateTime.setTime(cal.getTime().getTime());
+		Date startDate=new Date(cal.getTime().getTime());
+		cal.setTime(startDateTime);
+		cal.add(Calendar.DATE, time);
+		Date endDateTime = new Date(cal.getTime().getTime());
 		try{
 			String sql="SELECT COUNT(*) NOOFCALLS, OTHERNUMBER "
 						+"FROM test.circuitswitched_cdr "
@@ -270,7 +280,7 @@ public class SilentNumberAnalysis {
 			con=ConnectionPool.getConnectionFromPool();
 			ps=con.prepareStatement(sql);
 			ps.setString(1, number);
-			ps.setTimestamp(2, new Timestamp(startDateTime.getTime()));
+			ps.setTimestamp(2, new Timestamp(startDate.getTime()));
 			ps.setTimestamp(3, new Timestamp(endDateTime.getTime()));
 			System.out.println("Query formed:: "+ps.toString());
 			rs=ps.executeQuery();
@@ -322,18 +332,21 @@ public class SilentNumberAnalysis {
 		Connection con=null;
 		PreparedStatement ps=null;
 		List<LocationBean> beanList=new ArrayList<LocationBean>();
-		Date endDateTime = new Date(startDateTime.getTime());
+//		Date endDateTime = new Date(startDateTime.getTime());
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(startDateTime);
 		cal.add(Calendar.DATE, -noOfDays);
-		startDateTime.setTime(cal.getTime().getTime());
+		Date startDate=new Date(cal.getTime().getTime());
+		cal.setTime(startDateTime);
+		cal.add(Calendar.DATE, noOfDays);
+		Date endDateTime = new Date(cal.getTime().getTime());
 		try{
 			String sql="select DISTINCT LATTITUDE, LONGITUDE, CELLLOCATION from test.circuitswitched_cdr "+
 					"where SUBSCRIBERNUMBER =? AND STARTTIME BETWEEN ? AND ? ";
 			con=ConnectionPool.getConnectionFromPool();
 			ps=con.prepareStatement(sql);
 			ps.setString(1, parameter);
-			ps.setTimestamp(2, new Timestamp(startDateTime.getTime()));
+			ps.setTimestamp(2, new Timestamp(startDate.getTime()));
 			ps.setTimestamp(3, new Timestamp(endDateTime.getTime()));
 			System.out.println("Query formed:: "+ps.toString());
 			rs=ps.executeQuery();
@@ -388,7 +401,7 @@ public class SilentNumberAnalysis {
 		PreparedStatement ps=null;
 		SubscriberDetailsBean bean=new SubscriberDetailsBean();
 		try{
-			String sql="select SUBSCRIBER_NUMBER, IMSI, AGENT_NAME, AGENT_CODE, ADDRESS, CIRCLE from test.circuitswitched_sdr "+
+			String sql="select SUBSCRIBER_NUMBER, NAME, IMSI, AGENT_NAME, AGENT_CODE, ADDRESS, CIRCLE from test.circuitswitched_sdr "+
 					"where SUBSCRIBER_NUMBER =? ";
 			con=ConnectionPool.getConnectionFromPool();
 			ps=con.prepareStatement(sql);
@@ -403,6 +416,7 @@ public class SilentNumberAnalysis {
 				bean.setAgentCode(rs.getString("AGENT_CODE"));
 				bean.setAddress(rs.getString("ADDRESS"));
 				bean.setCircle(rs.getString("CIRCLE"));
+				bean.setSubscriberName(rs.getString("NAME"));
 			}
 		}
 		catch(Exception ex)

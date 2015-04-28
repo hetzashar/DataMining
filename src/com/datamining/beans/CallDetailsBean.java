@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class CallDetailsBean implements Serializable{
-
+	int count;
 	Date startDateTime;
 	Date endDateTime;
 	String subscriberNumber;
@@ -21,6 +21,27 @@ public class CallDetailsBean implements Serializable{
 	String otherNumberServiceProvider;
 	int nationalInternational;
 	String circle;
+	
+	public CallDetailsBean(){
+		
+	}
+	
+	public CallDetailsBean(String[] details){
+		count=Integer.parseInt(details[12]);
+		callType=details[4];
+		callDirection=details[5];
+		duration=Integer.parseInt(details[1]);
+		otherNumber=details[0];
+		imei=details[2];
+		imsi=details[13];
+		cellLocation=details[6];
+		latitude=Float.parseFloat(details[9]);
+		longitude=Float.parseFloat(details[10]);
+		otherNumberServiceProvider=details[8];
+		nationalInternational=Integer.parseInt(details[14]);
+		circle=details[11];
+		subscriberOperator=details[7];
+	}
 	
 	public Date getStartDateTime() {
 		return startDateTime;

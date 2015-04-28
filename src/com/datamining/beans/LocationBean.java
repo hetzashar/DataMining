@@ -1,5 +1,6 @@
 package com.datamining.beans;
 
+
 public class LocationBean {
 	
 	String subscriberNumber;
