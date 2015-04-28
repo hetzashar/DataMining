@@ -1,26 +1,29 @@
 package com.datamining.beans;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class CallDetailsBean implements Serializable{
-	int count;
-	Date startDateTime;
-	Date endDateTime;
-	String subscriberNumber;
-	String callType;
-	String callDirection;
-	int duration;
-	String otherNumber;
-	String imei;
-	String imsi;
-	String cellLocation;
-	String subscriberOperator;
-	float latitude;
-	float longitude;
-	String otherNumberServiceProvider;
-	int nationalInternational=0;
-	String circle;
+	public int count;
+	public Date startDateTime;
+	public Date endDateTime;
+	public String subscriberNumber;
+	public String callType;
+	public String callDirection;
+	public int duration;
+	public String otherNumber;
+	public String imei;
+	public String imsi;
+	public String cellLocation;
+	public String subscriberOperator;
+	public float latitude;
+	public float longitude;
+	public String otherNumberServiceProvider;
+	public int nationalInternational=0;
+	public String circle;
 	
 	public CallDetailsBean(){
 		
@@ -28,19 +31,26 @@ public class CallDetailsBean implements Serializable{
 	
 	public CallDetailsBean(String[] details,String cnt){
 		System.out.println("Initialising...");
-		count=Integer.parseInt(cnt);
-		callType=details[3];
-		callDirection=details[4];
-		duration=Integer.parseInt(details[1]);
+		count=Integer.parseInt(cnt.trim());
+		callType=details[3].trim();
+		callDirection=details[4].trim();
+		duration=Integer.parseInt(details[1].trim());
 		otherNumber=details[0];
 		imei=details[2];
 		imsi=details[8];
 		cellLocation=details[5];
-		latitude=Float.parseFloat(details[9]);
-		longitude=Float.parseFloat(details[10]);
+		latitude=Float.parseFloat(details[9].trim());
+		longitude=Float.parseFloat(details[10].trim());
 		otherNumberServiceProvider=details[7];
+		DateFormat df=new SimpleDateFormat("dd-MMM-yy");
+        try {
+			startDateTime=df.parse(details[13].trim());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if(!details[11].equals(""))
-		nationalInternational=Integer.parseInt(details[11]);			
+		nationalInternational=Integer.parseInt(details[11].trim());			
 		circle=details[12];
 		subscriberOperator=details[6];
 	}

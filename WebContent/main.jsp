@@ -32,7 +32,7 @@
 
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-	<h1> CRIMINAL PREDICTION </h1>
+	<h1> CRIMINAL PREDICTION SYSTEM </h1>
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
