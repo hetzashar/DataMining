@@ -69,7 +69,7 @@ public class RegisterServlet extends HttpServlet {
 			
 			if(LoginDao.validate(username, password)){    
 				RequestDispatcher rd=null;
-				rd=request.getRequestDispatcher("home.jsp");
+				rd=request.getRequestDispatcher("main.jsp");
 				rd.forward(request,response);    
 			}
 			else{   

@@ -5,15 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<meta http-equiv="X-UA-Compatible" content="chrome=1">
-	
-<!-- 	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" -->
-<!-- 	media="screen"> -->
-<!-- 	<link href="bootstrap/css/bootstrap-switch.min.css" rel="stylesheet"> -->
-<!-- 	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" > -->
-<!-- 	<link href="bootstrap/css/bootstrap-datepicker3.min.css" /> -->
-<!-- 	<link href="bootstrap/css/common.css" rel="stylesheet"> -->
-<!-- 	<link href="bootstrap/css/signin.css" rel="stylesheet"> -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">   
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">   
 <link rel="stylesheet" href="stylee.css">
    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
    
@@ -35,16 +27,9 @@
 </head>
 
 <body>
-<div id='cssmenu'>
-<ul>
-   <li class='active'><a href='home.jsp'><span>Home</span></a></li>
-   <li><a href='login.jsp'><span>Login</span></a></li>
-   <li><a href='identify.jsp'><span>Sign Up</span></a></li>
-   <li class='last'><a href='#'><span>Contact</span></a></li>
-</ul>
-</div>
 
-<div class="container">
+
+<div class="containerr">
 	<section id="content">
 		<form role="form" action="RegisterServlet" method="post">
 			<h1>Login Form</h1>

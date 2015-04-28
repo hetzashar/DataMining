@@ -97,40 +97,11 @@
     });
   });
 </script>
-         <div> 
-       <label >Circle </label> 
-       <div style="float: right; width: 380px">
-				<div class="input-group-btn select" id="select">
-					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-					<span class="selected">Mumbai</span> 
-					<span class="caret"></span></button>
-				
-				 <ul class="dropdown-menu option" role="menu">
-				    <li id="1"><a href="">Mumbai</a></li>
-				    <li id="2"><a href="#">Banglore</a></li>
-				    <li id="3"><a href="#">Hyderabad</a></li>
-				    <li id="4"><a href="#">Chennai</a></li>
-				    <li id="5"><a href="#">Gujarat</a></li>
-				    <li id="6"><a href="#">Delhi</a></li>
-				    <li id="7"><a href="#">Kolkata</a></li>
-				    <li id="8"><a href="#">Rajasthan</a></li>
-				    <li id="9"><a href="#">Goa</a></li>
-				    <li id="10"><a href="#">Trivandrum</a></li>
-				    <li id="11"><a href="#">Chandigarh</a></li>
-				    <li id="12"><a href="#">Srinagar</a></li>
-				    <li id="13"><a href="#">Lucknow</a></li>
-				    <li id="14"><a href="#">Patna</a></li>
-				    <li id="15"><a href="#">Jaipur</a></li>
-				    <li id="16"><a href="#">Gurgaon</a></li>
-				  </ul>
-				  </div>
-  	 			</div>
-  	 			</div>
-  	 			<br>
-  	 			<br>
-  	 			<div>  	  	   
-		<input type="text"  name="location" placeholder="location" required="" id="location" />
-			</div>
+          
+<div>
+     <label>Mobile Number </label>
+	<input type="text" name="username" placeholder="Mobile number" required="required" id="username" />
+</div>
 		<div style="text-align:center">  
     <input type="submit" class="btn btn-success" value="Submit" id="submt"  />  
             </div>  

@@ -20,14 +20,7 @@
         <title>Criminal Prediction System</title>
 </head>
 <body>
-<div id='cssmenu'>
-<ul>
-   <li class='active'><a href='home.jsp'><span>Home</span></a></li>
-   <li><a href='login.jsp'><span>Login</span></a></li>
-   <li><a href='identify.jsp'><span>Sign Up</span></a></li>
-   <li class='last'><a href='#'><span>Contact</span></a></li>
-</ul>
-</div>
+
 
 <div class="container">
 <section id="content">
