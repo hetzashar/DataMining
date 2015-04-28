@@ -50,10 +50,10 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="home.jsp">Silent Numvber Analysis</a>
+                        <a href="home.jsp">Silent Number Analysis</a>
                     </li>
 					  <li>
-                        <a href="callDetails.jsp">Call Setails Analysis</a>
+                        <a href="callDetails.jsp">Call Details Analysis</a>
                     </li>
                     <li>
                         <a href="login.jsp">Logout</a>

@@ -19,28 +19,30 @@ public class CallDetailsBean implements Serializable{
 	float latitude;
 	float longitude;
 	String otherNumberServiceProvider;
-	int nationalInternational;
+	int nationalInternational=0;
 	String circle;
 	
 	public CallDetailsBean(){
 		
 	}
 	
-	public CallDetailsBean(String[] details){
-		count=Integer.parseInt(details[12]);
-		callType=details[4];
-		callDirection=details[5];
+	public CallDetailsBean(String[] details,String cnt){
+		System.out.println("Initialising...");
+		count=Integer.parseInt(cnt);
+		callType=details[3];
+		callDirection=details[4];
 		duration=Integer.parseInt(details[1]);
 		otherNumber=details[0];
 		imei=details[2];
-		imsi=details[13];
-		cellLocation=details[6];
+		imsi=details[8];
+		cellLocation=details[5];
 		latitude=Float.parseFloat(details[9]);
 		longitude=Float.parseFloat(details[10]);
-		otherNumberServiceProvider=details[8];
-		nationalInternational=Integer.parseInt(details[14]);
-		circle=details[11];
-		subscriberOperator=details[7];
+		otherNumberServiceProvider=details[7];
+		if(!details[11].equals(""))
+		nationalInternational=Integer.parseInt(details[11]);			
+		circle=details[12];
+		subscriberOperator=details[6];
 	}
 	
 	public Date getStartDateTime() {

@@ -28,9 +28,12 @@
    <li class='last'><a href='#'><span>Contact</span></a></li>
 </ul>
 </div>
-	<div class="container">
+<br/>
+<br/>
+	<div>
 		<% HashMap<String, CallDetailsBean> probableNumbersList = (HashMap<String, CallDetailsBean>)session.getAttribute("ProbableNumbers"); %>
-		<table class="table table-striped table-bordered table-condensed">
+		<center>
+		<table class="table table-striped table-bordered table-condensed" style="width:1250px;">
 		    <thead>
 		        <tr class="info">
 		            <th>Record</th>
@@ -73,6 +76,7 @@
 		       
 		    </tbody>
 		</table>
+		</center>
 		</div>
 	
 	</body>
