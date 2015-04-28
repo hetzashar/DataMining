@@ -28,10 +28,10 @@ public class SilentNumberAnalysis {
 		HashMap<String, List<CallDetailsBean>> map=new HashMap<String, List<CallDetailsBean>>();
 		location="%"+location.toLowerCase()+"%";
 		try{
-			String sql="select * from test.circuitswitched_cdr "+
+			String sql="select * from datamin.circuitswitched_cdr "+
 						"where lower(CELLLOCATION) like ? "+
 						"AND SUBSCRIBERNUMBER NOT IN (SELECT DISTINCT SUBSCRIBERNUMBER "+ 
-												"FROM test.circuitswitched_cdr "+ 
+												"FROM datamin.circuitswitched_cdr "+ 
 												"WHERE STARTTIME BETWEEN ? AND ?) ";
 			con=ConnectionPool.getConnectionFromPool();
 			ps=con.prepareStatement(sql);
@@ -119,7 +119,7 @@ public class SilentNumberAnalysis {
 		cal.add(Calendar.DATE, time);
 		Date endDateTime = new Date(cal.getTime().getTime());
 		try{
-			String sql="select * from test.circuitswitched_cdr "+
+			String sql="select * from datamin.circuitswitched_cdr "+
 						"where SUBSCRIBERNUMBER =? AND STARTTIME BETWEEN ? AND ? ";
 			con=ConnectionPool.getConnectionFromPool();
 			ps=con.prepareStatement(sql);
@@ -201,7 +201,7 @@ public class SilentNumberAnalysis {
 		Date endDateTime = new Date(cal.getTime().getTime());
 		try{
 			String sql="SELECT COUNT(*) COUNT, CALLTYPE, DIRECTION "+
-						"FROM test.circuitswitched_cdr " +
+						"FROM datamin.circuitswitched_cdr " +
 						"WHERE SUBSCRIBERNUMBER =? AND STARTTIME BETWEEN ? AND ? "+
 						"GROUP BY CALLTYPE, DIRECTION";
 			con=ConnectionPool.getConnectionFromPool();
@@ -274,7 +274,7 @@ public class SilentNumberAnalysis {
 		Date endDateTime = new Date(cal.getTime().getTime());
 		try{
 			String sql="SELECT COUNT(*) NOOFCALLS, OTHERNUMBER "
-						+"FROM test.circuitswitched_cdr "
+						+"FROM datamin.circuitswitched_cdr "
  						+"WHERE SUBSCRIBERNUMBER =? AND STARTTIME BETWEEN ? AND ? " 
  						+"GROUP BY OTHERNUMBER";
 			con=ConnectionPool.getConnectionFromPool();
@@ -341,7 +341,7 @@ public class SilentNumberAnalysis {
 		cal.add(Calendar.DATE, noOfDays);
 		Date endDateTime = new Date(cal.getTime().getTime());
 		try{
-			String sql="select DISTINCT LATTITUDE, LONGITUDE, CELLLOCATION from test.circuitswitched_cdr "+
+			String sql="select DISTINCT LATTITUDE, LONGITUDE, CELLLOCATION from datamin.circuitswitched_cdr "+
 					"where SUBSCRIBERNUMBER =? AND STARTTIME BETWEEN ? AND ? ";
 			con=ConnectionPool.getConnectionFromPool();
 			ps=con.prepareStatement(sql);
@@ -401,7 +401,7 @@ public class SilentNumberAnalysis {
 		PreparedStatement ps=null;
 		SubscriberDetailsBean bean=new SubscriberDetailsBean();
 		try{
-			String sql="select SUBSCRIBER_NUMBER, NAME, IMSI, AGENT_NAME, AGENT_CODE, ADDRESS, CIRCLE from test.circuitswitched_sdr "+
+			String sql="select SUBSCRIBER_NUMBER, NAME, IMSI, AGENT_NAME, AGENT_CODE, ADDRESS, CIRCLE from datamin.circuitswitched_sdr "+
 					"where SUBSCRIBER_NUMBER =? ";
 			con=ConnectionPool.getConnectionFromPool();
 			ps=con.prepareStatement(sql);
