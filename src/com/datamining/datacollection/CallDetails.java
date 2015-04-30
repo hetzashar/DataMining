@@ -25,7 +25,7 @@ public class CallDetails {
 			conn=ConnectionPool.getConnectionFromPool();
 			
 			System.out.println(SubscriberNum);
-			pst = conn.prepareStatement("select * from circuitswitched_cdr where SUBSCRIBERNUMBER =? "
+			pst = conn.prepareStatement("select * from 239.circuitswitched_cdr where SUBSCRIBERNUMBER =? "
 					+ " AND STARTTIME BETWEEN ? AND ?");
 			pst.setString(1, SubscriberNum); 
 			pst.setTimestamp(2, new Timestamp(startDate.getTime()));
