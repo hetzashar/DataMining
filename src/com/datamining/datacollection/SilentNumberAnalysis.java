@@ -8,11 +8,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.io.Writer;
-import java.nio.file.DirectoryNotEmptyException;
-import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -24,17 +20,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-
-
-
-
-
 import com.datamining.beans.CallDetailsBean;
 import com.datamining.beans.CallSummaryBean;
 import com.datamining.beans.LocationBean;
 import com.datamining.beans.OtherNumberBean;
 import com.datamining.beans.SubscriberDetailsBean;
-import com.datamining.servlets.LocationAnalysis;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
@@ -46,7 +36,7 @@ public static int status=0;
 	public static HashMap<String, List<CallDetailsBean>> getSilentNumberAnalytics(Date startdate, Date enddate, String location){
 		DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 		try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-	              new FileOutputStream("C:/Users/Rashmitha/Documents/Hadoop/filename.txt")))) {
+	              new FileOutputStream("/home/ec2-user/input/input.txt")))) {
 	   writer.write(df.format(startdate)+"\n"+df.format(enddate)+"\n"+location);
 	}  catch (FileNotFoundException e) {
 		// TODO Auto-generated catch block
@@ -55,7 +45,7 @@ public static int status=0;
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}	
-		File f=new File("C:/Users/Rashmitha/Documents/Hadoop/completed.txt");
+		File f=new File("/home/ec2-user/output/completed.txt");
 		while(!(f.exists() && !f.isDirectory())){}
 		try {
 		    f.delete();
@@ -74,7 +64,7 @@ public static int status=0;
 		String[] Call=null;
 		List<CallDetailsBean> calls=new ArrayList<CallDetailsBean>();
 		try {
-		    in = new BufferedReader(new FileReader("C:/Users/Rashmitha/Documents/Hadoop/output.txt"));
+		    in = new BufferedReader(new FileReader("/home/ec2-user/output/part-00000"));
 		    String str;
 		    while ((str = in.readLine()) != null){
 		       tokens=str.split(":");
