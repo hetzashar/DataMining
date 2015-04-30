@@ -86,7 +86,7 @@ public class CalldetailsAnalysis extends HttpServlet {
 		session.setAttribute("crimeStartTime",new Date(startDateTime.getTime()));
 		List<CallDetailsBean> beanList = CallDetails.fetchCallDetails(startDateTime, endDateTime, subscribernumber);
 		session.setAttribute("callList", beanList);
-
+		session.setAttribute("subscriberNumber",subscribernumber);
 		if(beanList.size()==0){
 			out.write("No probable records found");
 		}else{
