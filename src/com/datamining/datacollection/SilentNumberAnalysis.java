@@ -35,14 +35,13 @@ public static int status=0;
 
 	public static HashMap<String, List<CallDetailsBean>> getSilentNumberAnalytics(Date startdate, Date enddate, String location){
 		DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+		
 		try (Writer writer = new BufferedWriter(new OutputStreamWriter(
 	              new FileOutputStream("/home/ec2-user/input/input.txt")))) {
 	   writer.write(df.format(startdate)+"\n"+df.format(enddate)+"\n"+location);
-	}  catch (FileNotFoundException e) {
+	}  catch (Exception e) {
 		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
+		
 		e.printStackTrace();
 	}	
 		File f=new File("/home/ec2-user/output/completed.txt");

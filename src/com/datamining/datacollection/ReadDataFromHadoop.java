@@ -39,8 +39,16 @@ public class ReadDataFromHadoop {
 	
 	public static HashMap<String, List<CallDetailsBean>> getSilentNumberAnalytics(Date startdate, Date enddate, String location){
 		DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+		File f1=new File("D:\\Masters\\Spring2015\\cmpe239\\DataMining_Project\\CMPE239_FinalProject\\input\\input.txt");
+		System.out.println(f1.getAbsolutePath());
+		try {
+			System.out.println(f1.getCanonicalPath());
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-	              new FileOutputStream("/input/input.txt")))) {
+	              new FileOutputStream("D:\\Masters\\Spring2015\\cmpe239\\DataMining_Project\\CMPE239_FinalProject\\input\\input.txt")))) {
 	   writer.write(df.format(startdate)+"\n"+df.format(enddate)+"\n"+location);
 	}  catch (FileNotFoundException e) {
 		// TODO Auto-generated catch block
@@ -49,7 +57,7 @@ public class ReadDataFromHadoop {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}	
-		File f=new File("/output/completed.txt");
+		File f=new File("D:\\Masters\\Spring2015\\cmpe239\\DataMining_Project\\CMPE239_FinalProject\\input\\completed.txt");
 		while(!(f.exists() && !f.isDirectory())){}
 		try {
 		    f.delete();
@@ -68,14 +76,14 @@ public class ReadDataFromHadoop {
 		String[] Call=null;
 		List<CallDetailsBean> calls=new ArrayList<CallDetailsBean>();
 		try {
-			File f=new File("/output/ouput.txt");
-		    in = new BufferedReader(new FileReader("/output/ouput.txt"));
+			File f=new File("D:\\Masters\\Spring2015\\cmpe239\\DataMining_Project\\CMPE239_FinalProject\\output\\output.txt");
+		    in = new BufferedReader(new FileReader(f));
 		    System.out.println(f.getAbsolutePath());
 		    System.out.println(f.getCanonicalPath());
 		    String str;
 		    while ((str = in.readLine()) != null){
 		       tokens=str.split(":");
-		       System.out.println(str);
+		       System.out.println(str);	
 		       System.out.println(tokens[2]);
 		       calllist=tokens[2].split("%");
 		       //System.out.println(tokens[0]);
@@ -88,8 +96,10 @@ public class ReadDataFromHadoop {
 		       numlist.put(tokens[0],calls);
 		    }
 		} catch (IOException e) {
+			e.printStackTrace();
 		} finally{
 			try {
+				if(in!=null)
 				in.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

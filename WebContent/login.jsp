@@ -29,65 +29,27 @@
 <body>
 
 
-<div class="containerr">
-	<section id="content">
-		<form role="form" action="RegisterServlet" method="post">
-			<h1>Login Form</h1>
-			<div>
-				<input type="text" name="username" placeholder="Username" required="required" id="username" />
-			</div>
-			<div>
-				<input type="password" name="password" placeholder="Password" required="required" id="password" />
-			</div>
-			<div>
-				<input type="submit" value="Log in"  align="right"/>
-<!-- 				<a href="#">Lost your password?</a> -->
-				<a href="identify.jsp">Register</a>
-			</div>
-			
-		</form><!-- form -->
-		<div class="button">
-			</div><!-- button -->
-	</section><!-- content -->
-</div><!-- container -->
-
-<!-- 		<div class="row"> -->
-<!-- 			<div class="col-md-6 col-md-offset-3 text-center panel panel-default"> -->
-
-<!-- 	<form class="form-horizontal" role="form" action="RegisterServlet" method="post" > -->
-<!-- 	<h1 class="form-signin-heading margin-base-vertical" >Please sign in</h1> -->
-<!-- 	<br> -->
-<!--   <div class="form-group"> -->
-<!--     <label class="control-label col-sm-3" for="username">User Name </label> -->
-<!--     <div class="col-sm-5"> -->
-<!--       <input type="text" class="form-control" name="username" id="username" placeholder="Enter username"> -->
-<!--     </div> -->
-<!--   </div> -->
-<!--   <div class="form-group"> -->
-<!--     <label class="control-label col-sm-3" for="password">Password </label> -->
-<!--     <div class="col-sm-5">  -->
-<!--       <input type="password" class="form-control" name="password" id="password" placeholder="Enter password"> -->
-<!--     </div> -->
-<!--   </div> -->
-<!--   <div class="form-group">  -->
-<!--     <div class="col-sm-offset-2 col-sm-5"> -->
-<!--       <div class="checkbox"> -->
-<!--         <label><input type="checkbox"> Remember me</label> -->
-<!--       </div> -->
-<!--     </div> -->
-<!--   </div> -->
-<!--   <div class="form-group">  -->
-<!--     <div class="col-sm-offset-2 col-sm-5"> -->
-<!--       <button type="submit" value="login" class="btn btn-default">Submit</button> -->
-<!--     </div> -->
-<!--   </div> -->
-<!-- </form> -->
-<!-- 	<p><a href="identify.jsp"> Register</a></p> -->
-<!-- 			</div> -->
-<!-- 			</div> -->
-<!-- 			</div> -->
-		  
-<!-- </div> -->
+	<div class="containerr">
+		<section id="content">
+			<form role="form" action="RegisterServlet" method="post">
+				<h1>Login Form</h1>
+				<div>
+					<input type="text" name="username" placeholder="Username" required="required" id="username" />
+				</div>
+				<div>
+					<input type="password" name="password" placeholder="Password" required="required" id="password" />
+				</div>
+				<div>
+					<input type="submit" value="Log in"  align="right"/>
+	<!-- 				<a href="#">Lost your password?</a> -->
+					<a href="identify.jsp">Register</a>
+				</div>
+				
+			</form><!-- form -->
+			<div class="button">
+				</div><!-- button -->
+		</section><!-- content -->
+	</div><!-- container -->
 </body>
 <script type="text/javascript" src="js/script.js"></script>
  <script src="http://code.jquery.com/jquery.js"></script>
