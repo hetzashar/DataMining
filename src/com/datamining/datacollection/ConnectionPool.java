@@ -16,7 +16,7 @@ import java.util.Vector;
     private static Vector<Connection> usedConnections = new Vector<Connection>();   
       
     // The URL string used to connect to the database   
-    private static String urlString = "harinisjsu.chymyuerorpt.us-west-2.rds.amazonaws.com";   
+    private static String urlString = "harinisjsu.chymyuerorpt.us-west-2.rds.amazonaws.com:3306/239";   
       
     // The username used to connect to the database   
     private static String userName = "root";       
