@@ -58,7 +58,7 @@
     <br>
 <div class="containerr">
 <section id="content">
- <form  role="form"  action="SilentAnalysis" method="POST" id="silentAnalysis">
+ <form  role="form"  action="CalldetailsAnalysis" method="POST" id="CalldetailsAnalysis">
            <h2>Call Details</h2>
 	<div class="one">
         <div class="register">
@@ -100,7 +100,7 @@
           
 <div>
      <label>Mobile Number </label>
-	<input type="text" name="username" placeholder="Mobile number" required="required" id="username" />
+	<input type="text" name="subscribernumber" placeholder="Mobile number" required="required" id="subscribernumber" />
 </div>
 		<div style="text-align:center">  
     <input type="submit" class="btn btn-success" value="Submit" id="submt"  />  

@@ -18,6 +18,14 @@
     <url-pattern>/LocationAnalysis/*</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>CalldetailsAnalysis</servlet-name>
+    <servlet-class>com.datamining.servlets.CalldetailsAnalysis</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CalldetailsAnalysis</servlet-name>
+    <url-pattern>/CalldetailsAnalysis/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>GraphAnalysis</servlet-name>
     <servlet-class>com.datamining.servlets.GraphAnalysis</servlet-class>
   </servlet>
@@ -33,7 +41,7 @@
     <servlet-name>TabularAnalytics</servlet-name>
     <url-pattern>/TabularAnalytics/*</url-pattern>
   </servlet-mapping>
-   <servlet>
+  <servlet>
     <servlet-name>RegisterServlet</servlet-name>
     <servlet-class>com.datamining.servlets.RegisterServlet</servlet-class>
   </servlet>
