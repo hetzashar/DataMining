@@ -75,7 +75,7 @@ public class SilentAnalysis extends HttpServlet {
 		int minuteEnd=Integer.parseInt(endTime.substring(14));
 		
 		Calendar calEnd = Calendar.getInstance();
-		calStart.set(yearEnd, monthEnd-1, dayEnd, hourOfDayEnd, minuteEnd);
+		calEnd.set(yearEnd, monthEnd-1, dayEnd, hourOfDayEnd, minuteEnd);
 		
 		Date endDateTime=null;
 		endDateTime=calEnd.getTime();
