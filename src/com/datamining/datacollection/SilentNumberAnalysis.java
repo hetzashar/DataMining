@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.sql.ResultSet;
@@ -20,6 +21,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import com.amazonaws.AmazonClientException;
+import com.amazonaws.AmazonServiceException;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.GetObjectRequest;
+import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.services.s3.model.S3Object;
 import com.datamining.beans.CallDetailsBean;
 import com.datamining.beans.CallSummaryBean;
 import com.datamining.beans.LocationBean;
@@ -33,24 +41,70 @@ public static int status=0;
 	
 	public static HashMap<String, List<CallDetailsBean>> numlist=new HashMap<String,List<CallDetailsBean>>();
 
-	public static HashMap<String, List<CallDetailsBean>> getSilentNumberAnalytics(Date startdate, Date enddate, String location){
+	public static HashMap<String, List<CallDetailsBean>> getSilentNumberAnalytics(Date startdate, Date enddate,
+			String location) {
 		DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-		
-		try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-	              new FileOutputStream("/home/ec2-user/input/input.txt")))) {
-	   writer.write(df.format(startdate)+"\n"+df.format(enddate)+"\n"+location);
-	}  catch (Exception e) {
-		// TODO Auto-generated catch block
-		
-		e.printStackTrace();
-	}	
-		File f=new File("/home/ec2-user/output/completed.txt");
-		while(!(f.exists() && !f.isDirectory())){}
+		AmazonS3 s3client = new AmazonS3Client();
+		String bucketName = "cmpe239jjugglers";
+		String keyName = "input.txt";
+
+		try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("input.txt")))) {
+			writer.write(df.format(startdate) + "\n" + df.format(enddate) + "\n" + location);
+		} catch (IOException e) {
+			System.out.println("Exception occured while performing IO Operation");
+		}
 		try {
-		    f.delete();
-		} catch (Exception x) {
-		    System.err.format("%s: no such" + " file or directory%n");
-		} 
+			File file = new File("input.txt");
+			s3client.putObject(new PutObjectRequest(bucketName, keyName, file));
+
+		} catch (AmazonServiceException ase) {
+			System.out.println("Caught an AmazonServiceException, which " + "means your request made it "
+					+ "to Amazon S3, but was rejected with an error response" + " for some reason.");
+			System.out.println("Error Message:    " + ase.getMessage());
+			System.out.println("HTTP Status Code: " + ase.getStatusCode());
+			System.out.println("AWS Error Code:   " + ase.getErrorCode());
+			System.out.println("Error Type:       " + ase.getErrorType());
+			System.out.println("Request ID:       " + ase.getRequestId());
+		} catch (AmazonClientException ace) {
+			System.out.println("Caught an AmazonClientException, which " + "means the client encountered "
+					+ "an internal error while trying to " + "communicate with S3, "
+					+ "such as not being able to access the network.");
+			System.out.println("Error Message: " + ace.getMessage());
+		}
+		/*
+		 * File f=new File("/home/ec2-user/output/completed.txt");
+		 * while(!(f.exists() && !f.isDirectory())){} try { f.delete(); } catch
+		 * (Exception x) { System.err.format("%s: no such" +
+		 * " file or directory%n"); }
+		 */
+
+		try {
+			keyName = "completed.txt";
+			File file = new File("completed.txt");
+			S3Object object = s3client.getObject(new GetObjectRequest(bucketName, keyName));
+			InputStream objectData = object.getObjectContent();
+			objectData.close();
+		} catch (IOException e) {
+			System.out.println("In catch IO Exception... " + e.getMessage());
+		} catch (AmazonServiceException ase) {
+			System.out.println("Caught an AmazonServiceException, which " + "means your request made it "
+					+ "to Amazon S3, but was rejected with an error response" + " for some reason.");
+			System.out.println("Error Message:    " + ase.getMessage());
+			System.out.println("HTTP Status Code: " + ase.getStatusCode());
+			System.out.println("AWS Error Code:   " + ase.getErrorCode());
+			System.out.println("Error Type:       " + ase.getErrorType());
+			System.out.println("Request ID:       " + ase.getRequestId());
+		} catch (AmazonClientException ace) {
+			System.out.println("Caught an AmazonClientException, which " + "means the client encountered "
+					+ "an internal error while trying to " + "communicate with S3, "
+					+ "such as not being able to access the network.");
+			System.out.println("Error Message: " + ace.getMessage());
+		}
+
+		/*
+		 * finally{ try { // in.close(); } catch (IOException e) { // TODO
+		 * Auto-generated catch block e.printStackTrace(); } }
+		 */
 		getSilentNumbers();
 		return numlist;
 	}
@@ -62,9 +116,20 @@ public static int status=0;
 		BufferedReader in=null;
 		String[] Call=null;
 		List<CallDetailsBean> calls=new ArrayList<CallDetailsBean>();
+		String bucketName     = "cmpe239jjugglers";
+		String keyName        = "part-00000";
+		AmazonS3 s3client = new AmazonS3Client();
 		try {
-		    in = new BufferedReader(new FileReader("/home/ec2-user/output/part-00000"));
-		    String str;
+			
+		    
+		    System.out.println("Downloading a new object to S3 from a file\n");
+            File file = new File("part-00000");
+            S3Object object=s3client.getObject(new GetObjectRequest(bucketName, keyName));
+            InputStream objectData = object.getObjectContent();
+            System.out.println(objectData);
+            objectData.close();
+            in = new BufferedReader(new FileReader("part-00000"));
+            String str;
 		    while ((str = in.readLine()) != null){
 		       tokens=str.split(":");
 		       System.out.println(str);
@@ -80,13 +145,28 @@ public static int status=0;
 		       numlist.put(tokens[0],calls);
 		    }
 		} catch (IOException e) {
-		} finally{
-			try {
-				in.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			System.out.println("In catch IO Exception... "+ e.getMessage());
+		}catch (AmazonServiceException ase) {
+            System.out.println("Caught an AmazonServiceException, which " +
+            		"means your request made it " +
+                    "to Amazon S3, but was rejected with an error response" +
+                    " for some reason.");
+            System.out.println("Error Message:    " + ase.getMessage());
+            System.out.println("HTTP Status Code: " + ase.getStatusCode());
+            System.out.println("AWS Error Code:   " + ase.getErrorCode());
+            System.out.println("Error Type:       " + ase.getErrorType());
+            System.out.println("Request ID:       " + ase.getRequestId());
+        } catch (AmazonClientException ace) {
+            System.out.println("Caught an AmazonClientException, which " +
+            		"means the client encountered " +
+                    "an internal error while trying to " +
+                    "communicate with S3, " +
+                    "such as not being able to access the network.");
+            System.out.println("Error Message: " + ace.getMessage());
+        } 
+		
+		finally{
+			
 		}
 		
 	}
