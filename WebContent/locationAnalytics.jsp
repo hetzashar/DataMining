@@ -44,8 +44,14 @@
 			function initialize() {
 			    var map;
 			    var bounds = new google.maps.LatLngBounds();
+			    <% SubscriberDetailsBean subscriber = null;
+			    List<LocationBean> locationBeanList=(ArrayList<LocationBean>) session.getAttribute("locationBean");
+			    float latitude= locationBeanList.get(0).getLatitude();
+			    float longtitude = locationBeanList.get(0).getLongtitude();
+			    %>
 			    var mapOptions = {
-			        mapTypeId: 'roadmap'
+			        mapTypeId: 'roadmap',
+			        center: new google.maps.LatLng(<%=latitude%>, <%=longtitude%>),
 			    };
 			                    
 			    // Display a map on the page
@@ -55,8 +61,8 @@
 			var markers = [];
 			var infoWindowContent = [];
 				// Multiple Markers
-			<% SubscriberDetailsBean subscriber = null;
-			List<LocationBean> locationBeanList=(ArrayList<LocationBean>) session.getAttribute("locationBean");
+			<%  subscriber = null;
+			 locationBeanList=(ArrayList<LocationBean>) session.getAttribute("locationBean");
 				    if (locationBeanList!=null){
 				    	for(int i=0; i<locationBeanList.size(); i++){
 				    		LocationBean bean=locationBeanList.get(i);
@@ -66,11 +72,11 @@
 			<%		}
 				     subscriber = locationBeanList.get(0).getSubscriber();
 		    	}
-				if(subscriber==null){
+				if(subscriber==null || subscriber.getSubscriberNumber()==null){
 		    %>
-		    infoWindowContent = [ '<div class="info_content">'
+		    var contentString = '<div class="info_content">'
 									+ '<h3>No Subscriber Records found for the number</h3>'
-									+ '</div>' ]
+									+ '</div>';
 			// Info Window Content
 			<%}else{%>	
 			var name='<%=subscriber.getSubscriberName()%>';

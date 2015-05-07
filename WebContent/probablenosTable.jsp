@@ -109,9 +109,9 @@
 			            <td><%=bean.getImei() %></td>
 			            <td><%=bean.getImsi() %></td>
 			            <td><%=bean.getSubscriberOperator() %></td>
-			            <td><a href="/DataMining/TabularAnalytics?param1=<%=keys%>"><img src='images/table.png'></a></td>
-			            <td><a href="/DataMining/LocationAnalysis?param1=<%=keys%>"><img src='images/location.png'></a></td>
-			            <td><a href="/DataMining/GraphAnalysis?param1=<%=keys%>"><img src='images/chart.png'></a></td>
+			            <td><a href="/TabularAnalytics?param1=<%=keys%>"><img src='images/table.png'></a></td>
+			            <td><a href="/LocationAnalysis?param1=<%=keys%>"><img src='images/location.png'></a></td>
+			            <td><a href="/GraphAnalysis?param1=<%=keys%>"><img src='images/chart.png'></a></td>
 			        </tr>
 		        <%} %>
 		       
