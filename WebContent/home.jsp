@@ -125,7 +125,7 @@
 </script>
 
 <div>
- <label>Start Time </label> 
+ <label>End Time </label> 
   <div id="datetimepicker1" class="input-append">
     <input  type="datetime-local" name="doblocalEnd" id="doblocal"></input>
   </div>

@@ -371,7 +371,7 @@ public static int status=0;
 		PreparedStatement ps=null;
 		SubscriberDetailsBean bean=new SubscriberDetailsBean();
 		try{
-			String sql="select SUBSCRIBER_NUMBER, NAME, IMSI, AGENT_NAME, AGENT_CODE, ADDRESS, CIRCLE from datamin.circuitswitched_sdr "+
+			String sql="select SUBSCRIBER_NUMBER, NAME, IMSI, AGENT_NAME, AGENT_CODE, ADDRESS, CIRCLE from test.circuitswitched_sdr "+
 					"where SUBSCRIBER_NUMBER =? ";
 			con=(Connection) ConnectionPool.getConnectionFromPool();
 			ps=(PreparedStatement) con.prepareStatement(sql);
