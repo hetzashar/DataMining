@@ -50,8 +50,8 @@
 			    float longtitude = locationBeanList.get(0).getLongtitude();
 			    %>
 			    var mapOptions = {
-			        mapTypeId: 'roadmap',
-			        center: new google.maps.LatLng(<%=latitude%>, <%=longtitude%>),
+			        mapTypeId: 'roadmap'
+			        
 			    };
 			                    
 			    // Display a map on the page
@@ -123,14 +123,15 @@
 
 					// Automatically center the map fitting all markers on the screen
 					map.fitBounds(bounds);
+					map.setZoom(16);
 				}
 
 				// Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
-				var boundsListener = google.maps.event.addListener((map),
-						'bounds_changed', function(event) {
-							this.setZoom(14);
-							google.maps.event.removeListener(boundsListener);
-						});
+// 				var boundsListener = google.maps.event.addListener((map),
+// 						'bounds_changed', function(event) {
+// 							this.setZoom(14);
+// 							google.maps.event.removeListener(boundsListener);
+// 						});
 
 			}
 		</script>
