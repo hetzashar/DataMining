@@ -1,5 +1,6 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
-<%@page import="com.datamining.beans.CallDetailsBean"%>
+<%@page import="com.datamining.beans.SimilarityBean"%>
 <%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -72,46 +73,38 @@
 <br/>
 <br/>
 	<div>
-		<% HashMap<String, CallDetailsBean> probableNumbersList = (HashMap<String, CallDetailsBean>)session.getAttribute("ProbableNumbers"); %>
+		<% List<SimilarityBean> similarNumberList = (ArrayList)session.getAttribute("numlist"); %>
 		<center>
 		<table class="table table-striped table-bordered table-condensed" style="width:1250px;">
 		    <thead>
 		        <tr class="info">
 		            <th>Record</th>
-		            <th>Subscriber Number</th>
-		            <th>Related IMEI</th>
-		            <th>Related IMSI</th>
-		            <th>Subscriber Operator</th>
-		            <th>Tabular Analytics</th>
-		            <th>Location Analytics</th>
-		            <th>Graphical Analytics</th>
+		            <th>Number</th>
+		            <th>Related Number1</th>
+		            <th>Similarity Ratio of 1</th>
+		            <th>Related Number2</th>
+		            <th>Similarity Ratio of 2</th>
+		            <th>Related Number3</th>
+		            <th>Similarity Ratio of 3</th>
 		        </tr>
 		    </thead>
 		    <tbody>
 		    	<% int i=0;
-		    	for(String keys: probableNumbersList.keySet()){
-		    		List callList=((List<CallDetailsBean>)probableNumbersList.get(keys));
-		    		int count=callList.size();
-		    		CallDetailsBean bean=(CallDetailsBean)callList.get(0);
+		    	for(SimilarityBean bean: similarNumberList){
+		    		
 		    	%>
-		    	<%if(count>20){ %>
-		    	 	<tr class="danger">
-		    	 	
-		    	 <%}else if (count>10){ %>
-		    	 	<tr class="warning">
-			    	 	
-		    	 <%}else { %>
+		    	
 		    	 	<tr class="success">
 			    	 	
-		    	 <%} %>
 		    	 		<td><%=i=i+1 %></td>
-		            	<td><a href="/SimilarNo?param1=<%=keys%>"><%=keys %></a></td>
-			            <td><%=bean.getImei() %></td>
-			            <td><%=bean.getImsi() %></td>
-			            <td><%=bean.getSubscriberOperator() %></td>
-			            <td><a href="/TabularAnalytics?param1=<%=keys%>"><img src='images/table.png'></a></td>
-			            <td><a href="/LocationAnalysis?param1=<%=keys%>"><img src='images/location.png'></a></td>
-			            <td><a href="/GraphAnalysis?param1=<%=keys%>"><img src='images/chart.png'></a></td>
+		            	<td><%=bean.getNumber()%></td>
+			            <td><%=bean.getNumber1() %></td>
+			            <td><%=bean.getSimilarity1() %></td>
+			            <td><%=bean.getNumber2() %></td>
+			            <td><%=bean.getSimilarity2() %></td>
+			            <td><%=bean.getNumber3() %></td>
+			            <td><%=bean.getSimilarity3() %></td>
+			            
 			        </tr>
 		        <%} %>
 		       

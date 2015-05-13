@@ -49,6 +49,14 @@
     <servlet-name>RegisterServlet</servlet-name>
     <url-pattern>/RegisterServlet/*</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>SimilarNo</servlet-name>
+    <servlet-class>com.datamining.servlets.SimilarNo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SimilarNo</servlet-name>
+    <url-pattern>/SimilarNo/*</url-pattern>
+  </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>

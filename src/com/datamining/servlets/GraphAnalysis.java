@@ -17,6 +17,7 @@ import com.datamining.beans.CallDetailsBean;
 import com.datamining.beans.CallSummaryBean;
 import com.datamining.beans.OtherNumberBean;
 import com.datamining.datacollection.SilentNumberAnalysis;
+import com.datamining.datacollection.ReadDataFromHadoop;
 
 /**
  * Servlet implementation class GraphAnalysis

@@ -16,6 +16,8 @@ import javax.servlet.http.HttpSession;
 
 import com.datamining.beans.CallDetailsBean;
 import com.datamining.datacollection.SilentNumberAnalysis;
+import com.datamining.datacollection.ReadDataFromHadoop;
+
 
 /**
  * Servlet implementation class TabularAnalytics

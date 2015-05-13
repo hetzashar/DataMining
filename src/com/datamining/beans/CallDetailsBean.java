@@ -29,8 +29,8 @@ public class CallDetailsBean implements Serializable{
 		
 	}
 	
-	public CallDetailsBean(String[] details,String cnt){
-		System.out.println("Initialising...");
+	public CallDetailsBean(String[] details,String cnt, String subscriberNo){
+		//System.out.println("Initialising...");
 		count=Integer.parseInt(cnt.trim());
 		callType=details[3].trim();
 		callDirection=details[4].trim();
@@ -39,8 +39,16 @@ public class CallDetailsBean implements Serializable{
 		imei=details[2];
 		imsi=details[8];
 		cellLocation=details[5];
+		subscriberNumber=subscriberNo;
+		try{
 		latitude=Float.parseFloat(details[9].trim());
 		longitude=Float.parseFloat(details[10].trim());
+		}catch(Exception e)
+		{
+			latitude=0;
+			longitude=0;
+			e.printStackTrace();
+		}
 		otherNumberServiceProvider=details[7];
 		DateFormat df=new SimpleDateFormat("dd-MMM-yy");
         try {

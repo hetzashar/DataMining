@@ -204,14 +204,15 @@ public static int status=0;
             while ((str = reader.readLine()) != null){
             	
  		       tokens=str.split(":");
- 		       System.out.println(str);
- 		       System.out.println(tokens[2]);
+ 		       //System.out.println(str);
+ 		       //System.out.println(tokens[2]);
  		       calllist=tokens[2].split("%");
  		       //System.out.println(tokens[0]);
  		       for (String call: calllist){
  		    	   Call=call.split(";");
- 		    	  System.out.println(Call.length);
- 		    	   calls.add(new CallDetailsBean(Call,tokens[1]));
+// 		    	  System.out.println(Call.length);
+// 		    	  System.out.println(tokens[1] + "\n" +call);
+ 		    	   calls.add(new CallDetailsBean(Call,tokens[1], tokens[0]));
  		       }
  		      
  		       numlist.put(tokens[0],calls);
@@ -305,18 +306,20 @@ public static int status=0;
 		int totalDuration=0;
 		while(it.hasNext()){
 			CallDetailsBean calldetails=(CallDetailsBean) it.next();
-			totalDuration+=calldetails.duration;
-			if(calldetails.getCallType().equals("VC")){
-				if(calldetails.getCallDirection().equals("IN")){
-					vcInTotal++;
+			if(calldetails.getSubscriberNumber().equals(number)){
+				totalDuration+=calldetails.duration;
+				if(calldetails.getCallType().equals("VC")){
+					if(calldetails.getCallDirection().equals("IN")){
+						vcInTotal++;
+					}else{
+						vcOutTotal++;
+					}
 				}else{
-					vcOutTotal++;
-				}
-			}else{
-				if(calldetails.getCallDirection().equals("IN")){
-					smsInTotal++;
-				}else{
-					smsOutTotal++;
+					if(calldetails.getCallDirection().equals("IN")){
+						smsInTotal++;
+					}else{
+						smsOutTotal++;
+					}
 				}
 			}
 		}
@@ -330,12 +333,14 @@ public static int status=0;
 		int count=0;
 		while(it.hasNext()){
 			CallDetailsBean tempcall=(CallDetailsBean) it.next();
+			if(tempcall.getSubscriberNumber().equals(number)){
 			if(temp.containsKey(tempcall.otherNumber)){
 				count=temp.get(tempcall.otherNumber);
-				count=count+1;
+				count=tempcall.count;
 			}else{
-				temp.put(tempcall.otherNumber,1);
+				temp.put(tempcall.otherNumber,tempcall.count);
 			}
+		}
 		}
 		Iterator it1 = temp.entrySet().iterator();
 		while (it1.hasNext()) {
